@@ -81,8 +81,8 @@ function extractEventsArray(body){
     div.innerHTML = body;
     const events = Array.from(div.querySelectorAll("li"));
     const eventData = events.map(event => {
-        const timeel = event.querySelector(".details abbr"); // <abbr title='Created: Fri, 24 Sep 2021 11:07:56 +0000&#10;Closed: Fri, 24 Sep 2021 11:07:56 +0000'>
-        const authorel = event.querySelector(".details a"); // <a href="/user/blah">Blah</a>
+        const timeel = event.querySelector("abbr"); // <abbr title='Created: Fri, 24 Sep 2021 11:07:56 +0000&#10;Closed: Fri, 24 Sep 2021 11:07:56 +0000'>
+        const authorel = event.querySelector("div a"); // <a href="/user/blah">Blah</a>
         const pageel = event.querySelector("p a"); // <a class="changeset_id text-dark" href="/changeset/nnnnnnnnn">Changeset description</a>
         //                                                                  0  1        2      3   4     5         6         7       8           9       10        11        12
         const latlong = event.getAttribute("data-changeset").split("\""); // {"id":111641913,"bbox":{"minlon":-4.4953485,"minlat":54.9145997,"maxlon":-1.4070896,"maxlat":56.4630365}}
