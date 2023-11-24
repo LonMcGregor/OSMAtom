@@ -81,7 +81,7 @@ function extractEventsArray(body){
     div.innerHTML = body;
     const events = Array.from(div.querySelectorAll("li"));
     const eventData = events.map(event => {
-        const timeel = event.querySelector("abbr"); // <abbr title='Created: Fri, 24 Sep 2021 11:07:56 +0000&#10;Closed: Fri, 24 Sep 2021 11:07:56 +0000'>
+        const timeel = event.querySelector("time"); // <time title="Created: Fri, 24 Nov 2023 11:21:37 +0000        Closed: Fri, 24 Nov 2023 11:21:39 +0000" datetime="2023-11-24T11:21:39Z">about 5 hours ago</time>
         const authorel = event.querySelector("div a"); // <a href="/user/blah">Blah</a>
         const pageel = event.querySelector("p a"); // <a class="changeset_id text-dark" href="/changeset/nnnnnnnnn">Changeset description</a>
         //                                                                  0  1        2      3   4     5         6         7       8           9       10        11        12
@@ -93,7 +93,7 @@ function extractEventsArray(body){
         return {
             isWithinArea: isWithinArea(minlong, minlat, maxlong, maxlat),
             id: event.id,
-            time: timeel.getAttribute("title").split("&#10;")[0].substring("Created: ".length),
+            time: timeel.datetime,
             authorid: authorel.href.split("/")[2],
             author: removeXMLChars(authorel.innerText),
             url: pageel.href,
